@@ -113,7 +113,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56749, 0)
 [node name="Camera3D" type="Camera3D" parent="Player/Neck"]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56749, 0)
+transform = Transform3D(0.981746, 0.00788174, 0.190032, 0.0057562, 0.997452, -0.0711082, -0.190108, 0.070904, 0.9792, 0.908435, -0.379444, 0.464317)
+light_color = Color(0.936275, 0.694578, 0.222146, 1)
+spot_range = 14.003
+spot_attenuation = 0.965936
+spot_angle = 35.91
+spot_angle_attenuation = 0.466517
 script = ExtResource("5_2qa2k")
 
 [node name="Trees" type="GridMap" parent="."]
