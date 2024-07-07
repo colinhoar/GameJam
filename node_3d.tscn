@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://blrq3k1y3cjw4"]
+[gd_scene load_steps=21 format=3 uid="uid://blrq3k1y3cjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dku7tnsgf2j84" path="res://SkyComp.png" id="1_2kaws"]
 [ext_resource type="Script" path="res://Player.gd" id="1_i0ddt"]
 [ext_resource type="Texture2D" uid="uid://bcsegc4d64n05" path="res://Ground.png" id="1_kd40a"]
 [ext_resource type="Texture2D" uid="uid://c4ws0ownn56hf" path="res://Ground_n.png" id="2_wkryp"]
 [ext_resource type="MeshLibrary" uid="uid://deu1wsscc77ai" path="res://Tree1.tres" id="4_6vo6l"]
+[ext_resource type="Script" path="res://Flashlight.gd" id="5_2qa2k"]
 [ext_resource type="MeshLibrary" uid="uid://t0j5oyopa4iq" path="res://Foliage1.tres" id="5_eqxdq"]
 [ext_resource type="MeshLibrary" uid="uid://iennsmqxhdh7" path="res://Scarecrow1.tres" id="6_bgb33"]
 
@@ -106,12 +107,14 @@ mesh = SubResource("CapsuleMesh_v8c8o")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("ConvexPolygonShape3D_566re")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Player"]
-
 [node name="Neck" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56749, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Neck"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56749, 0)
+script = ExtResource("5_2qa2k")
 
 [node name="Trees" type="GridMap" parent="."]
 mesh_library = ExtResource("4_6vo6l")
