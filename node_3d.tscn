@@ -112,7 +112,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56749, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Neck"]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56749, 0)
 script = ExtResource("5_2qa2k")
 
