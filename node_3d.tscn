@@ -99,7 +99,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_mtyho")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1182, 1.11466, 3.8324)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02164, 1.11466, -1.24394)
 script = ExtResource("1_i0ddt")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]

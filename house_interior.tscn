@@ -25,6 +25,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0274796, -0.0613532, 11.657
 [node name="House_Interior" parent="." instance=ExtResource("1_cb74g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104291, -1.06616, 0.877074)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="House_Interior"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19258, -13.0254)
 mesh = SubResource("PlaneMesh_ad38p")
