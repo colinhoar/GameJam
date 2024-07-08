@@ -1,5 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfteub7c07tsm"]
+[gd_scene load_steps=3 format=3 uid="uid://cfteub7c07tsm"]
 
 [ext_resource type="PackedScene" uid="uid://f5sbb8v871b1" path="res://BigRock.glb" id="1_joagv"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_eqxi4"]
+
 [node name="BigRock2" instance=ExtResource("1_joagv")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BigRock" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BigRock/StaticBody3D" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_eqxi4")

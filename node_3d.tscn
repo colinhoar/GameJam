@@ -11,8 +11,8 @@
 [ext_resource type="MeshLibrary" uid="uid://bi0307ev7evx6" path="res://TilledFarmland.tres" id="9_2sy40"]
 [ext_resource type="PackedScene" uid="uid://juk51ssarrmo" path="res://House.glb" id="9_fd86p"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="10_klcs1"]
-[ext_resource type="MeshLibrary" uid="uid://5c8xmf8ydghh" path="res://BigRock.tres" id="10_tq61f"]
-[ext_resource type="MeshLibrary" uid="uid://cas0kwefmnbrb" path="res://SmallRock.tres" id="11_fv621"]
+[ext_resource type="MeshLibrary" uid="uid://4sg6q4dgjudf" path="res://BigRock.tres" id="10_tq61f"]
+[ext_resource type="MeshLibrary" uid="uid://bub8v2v1tt0oh" path="res://SmallRock.tres" id="11_fv621"]
 [ext_resource type="Script" path="res://HousetoInterior.gd" id="11_us05m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bwfdg"]

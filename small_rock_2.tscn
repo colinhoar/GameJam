@@ -1,5 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://7wr0g8csr0hw"]
+[gd_scene load_steps=3 format=3 uid="uid://7wr0g8csr0hw"]
 
 [ext_resource type="PackedScene" uid="uid://djq8kqgx5m54" path="res://SmallRock.glb" id="1_lisqn"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_cxwrj"]
+
 [node name="SmallRock2" instance=ExtResource("1_lisqn")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SmallRock" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SmallRock/StaticBody3D" index="0"]
+transform = Transform3D(0.74, 0, 0, 0, 0.74, 0, 0, 0, 0.74, -0.2556, 0.103572, 0.15678)
+shape = SubResource("SphereShape3D_cxwrj")
