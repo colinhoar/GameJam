@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://q6iwxqlfoe1y"]
+
+[ext_resource type="PackedScene" uid="uid://4rpvcw0v4c5x" path="res://TilledFarm.glb" id="1_0s4k5"]
+
+[node name="TilledFarm" instance=ExtResource("1_0s4k5")]
+
+[node name="Plane" parent="." index="0"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
