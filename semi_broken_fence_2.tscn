@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cix2bgr5kkqpq"]
+
+[ext_resource type="PackedScene" uid="uid://b5oxq72pke748" path="res://SemiBrokenFence.glb" id="1_way0b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cikpi"]
+
+[node name="SemiBrokenFence2" instance=ExtResource("1_way0b")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SemiBrokenFence" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.621172, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SemiBrokenFence/StaticBody3D" index="0"]
+transform = Transform3D(2.19, 0, 0, 0, 1.885, 0, 0, 0, 0.185, 0, 0, 0)
+shape = SubResource("BoxShape3D_cikpi")

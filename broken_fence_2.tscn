@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvhm4j5yfw1bb"]
+
+[ext_resource type="PackedScene" uid="uid://cdtpk4y3h2g1r" path="res://BrokenFence.glb" id="1_ql43e"]
+
+[node name="BrokenFence2" instance=ExtResource("1_ql43e")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BrokenFence" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.621172, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="BrokenFence/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.195, 0, 0, 0)
+polygon = PackedVector2Array(1.09372, 1.29361, 0.906573, 1.3008, 0.902974, 1.07767, -0.763346, 0.159932, -0.986482, 0.141937, -0.986482, 0.0123745, 1.09732, 0.0051766)
