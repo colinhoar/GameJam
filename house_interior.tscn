@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=19 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
@@ -7,6 +7,12 @@
 [ext_resource type="Script" path="res://HousetoExterior.gd" id="4_ldtqx"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="5_7t2vp"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="6_hlw7o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_molkm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4y140"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yxuvd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ad38p"]
 size = Vector2(20, 20)
@@ -66,6 +72,80 @@ script = ExtResource("1_8ty32")
 
 [node name="House_Interior" parent="." instance=ExtResource("1_cb74g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104291, -1.06616, 0.877074)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="House_Interior"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(10.37, 0, 0, 0, 4.59, 0, 0, 0, 1, -0.104291, 2.20439, -8.06849)
+shape = SubResource("BoxShape3D_molkm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(10.37, 0, 0, 0, 4.59, 0, 0, 0, 1, -0.104291, 2.20439, -18.2115)
+shape = SubResource("BoxShape3D_molkm")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(7.08, 0, 0, 0, 4.505, 0, 0, 0, 0.2, -2.271, 2.204, -11.645)
+shape = SubResource("BoxShape3D_molkm")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(7.08, 0, 0, 0, 4.505, 0, 0, 0, 0.2, 6.72682, 2.204, -11.645)
+shape = SubResource("BoxShape3D_molkm")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(-4.53287e-07, 0, 1, 0, 4.59, 0, -10.37, 0, -4.37114e-08, 5.43086, 2.20439, -13.2015)
+shape = SubResource("BoxShape3D_molkm")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(-4.53287e-07, 0, 1, 0, 4.59, 0, -10.37, 0, -4.37114e-08, -5.46783, 2.20439, -13.2015)
+shape = SubResource("BoxShape3D_molkm")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(-2.968e-07, 0, 0.175, 0, 4.59, 0, -6.79, 0, -7.64949e-09, -0.684765, 2.20439, -17.3523)
+shape = SubResource("BoxShape3D_molkm")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(2.145, 0, 0, 0, 0.34, 0, 0, 0, 2.145, 2.03765, 0.951914, -15.3054)
+shape = SubResource("CylinderShape3D_4y140")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(11.26, 0, 0, 0, 1.345, 0, 0, 0, 1, 0.00355315, 0.505781, -9.02522)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(1.165, 0, 0, 0, 1, 0, 0, 0, 1, -2.5794, 0.603064, -9.32488)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(1.12, 0, 0, 0, 3.165, 0, 0, 0, 1, -4.19658, 1.19394, -9.15706)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(-0.759271, 0, 0.650774, 0, 1, 0, -0.650774, 0, -0.759271, 0.352691, 0.27095, -16.5946)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(-0.132872, 0, 0.650774, 0, 1, 0, -0.113885, 0, -0.759271, 0.0688301, 1.27444, -16.8401)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(0.688355, 0, 0.725374, 0, 1, 0, -0.725374, 0, 0.688355, 3.81483, 0.27095, -16.7385)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(0.120462, 0, 0.725374, 0, 1, 0, -0.126941, 0, 0.688355, 4.08768, 1.27444, -17.018)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.46, -4.05259, 0.407903, -16.274)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1.455, 0, 1, 0, -1, 0, -6.36001e-08, -2.38204, 0.62835, -16.8696)
+shape = SubResource("BoxShape3D_yxuvd")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="House_Interior/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.14, -4.05259, 1.2734, -17.3259)
+shape = SubResource("BoxShape3D_yxuvd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19258, -13.0254)
