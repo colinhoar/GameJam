@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://63m7k81sscle"]
+
+[ext_resource type="PackedScene" uid="uid://dmt1c76sfhy6y" path="res://Sheep.glb" id="1_f4r47"]
+
+[node name="Sheep2" instance=ExtResource("1_f4r47")]
+
+[node name="Sheep" parent="." index="0"]
+transform = Transform3D(0.932131, 0.0384756, 0.360071, 0.00578669, 0.99263, -0.121048, -0.362075, 0.114917, 0.925038, 0.0791387, 1.18858, 0.868271)

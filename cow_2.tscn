@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6qlb8dtq6f2w"]
+
+[ext_resource type="PackedScene" uid="uid://de12ts3qfl1ra" path="res://Cow.glb" id="1_fc3cc"]
+
+[node name="Cow2" instance=ExtResource("1_fc3cc")]
+
+[node name="Cow" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12765, 1.95081, -0.218518)

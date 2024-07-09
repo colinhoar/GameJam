@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn0s6j65njo5p"]
+
+[ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_h16vs"]
+
+[node name="BarnInterior" instance=ExtResource("1_h16vs")]
+
+[node name="Barn Interior" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998509, 0.423468)
