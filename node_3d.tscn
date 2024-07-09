@@ -306,9 +306,6 @@ text = "Enter House [E]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HouseOutsideMarker" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9328, 0, 2.71674)
-
 [node name="PauseMenu" parent="." instance=ExtResource("16_8esn2")]
 visible = false
 
