@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://blrq3k1y3cjw4"]
+[gd_scene load_steps=44 format=3 uid="uid://blrq3k1y3cjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dku7tnsgf2j84" path="res://SkyComp.png" id="1_2kaws"]
 [ext_resource type="Script" path="res://main.gd" id="1_e1sbo"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c7dajki1prbku" path="res://fence_2.tscn" id="21_246cr"]
 [ext_resource type="PackedScene" uid="uid://dvhm4j5yfw1bb" path="res://broken_fence_2.tscn" id="22_h1dl1"]
 [ext_resource type="PackedScene" uid="uid://cix2bgr5kkqpq" path="res://semi_broken_fence_2.tscn" id="23_lyowu"]
+[ext_resource type="Script" path="res://BarntoInterior.gd" id="24_wgkqb"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bwfdg"]
 panorama = ExtResource("1_2kaws")
@@ -125,6 +126,9 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sskwy"]
 size = Vector3(2, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6am1y"]
+size = Vector3(3, 3, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e1sbo")
@@ -376,5 +380,32 @@ transform = Transform3D(-0.0775542, 0, 0.996988, 0, 1, 0, -0.996988, 0, -0.07755
 [node name="SemiBrokenFence6" parent="Path Fences" instance=ExtResource("23_lyowu")]
 transform = Transform3D(0.38436, 0, 0.923183, 0, 1, 0, -0.923183, 0, 0.38436, 21.6519, -0.167608, 0.936794)
 
+[node name="BarntoInterior" type="Area3D" parent="."]
+script = ExtResource("24_wgkqb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarntoInterior"]
+transform = Transform3D(0.688355, 0, 0.725374, 0, 1, 0, -0.725374, 0, 0.688355, 14.1113, 1.3817, 33.798)
+shape = SubResource("BoxShape3D_6am1y")
+
+[node name="Prompt2" type="Label" parent="."]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 30.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("15_ls8cn")
+theme_override_font_sizes/font_size = 16
+text = "Enter Barn [E]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="HousetoInterior" to="HousetoInterior" method="_on_body_entered"]
 [connection signal="body_exited" from="HousetoInterior" to="HousetoInterior" method="_on_body_exited"]
+[connection signal="body_entered" from="BarntoInterior" to="BarntoInterior" method="_on_body_entered"]
+[connection signal="body_exited" from="BarntoInterior" to="BarntoInterior" method="_on_body_exited"]
