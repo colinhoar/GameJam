@@ -82,20 +82,20 @@ initial_velocity_min = 30.0
 initial_velocity_max = 30.0
 color = Color(0.266667, 0.329412, 0.278431, 0.0862745)
 
-[sub_resource type="Curve" id="Curve_4l8rj"]
+[sub_resource type="Curve" id="Curve_c5xtw"]
 max_value = 0.05
 _data = [Vector2(0.188235, 0.000549451), 0.0, 0.0, 0, 0, Vector2(0.388235, 0.00714286), 0.0, 0.0, 0, 0, Vector2(0.529412, 0.00274725), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwmpa"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg0p"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_q7c21"]
-material = SubResource("StandardMaterial3D_uwmpa")
-curve = SubResource("Curve_4l8rj")
+material = SubResource("StandardMaterial3D_ibg0p")
+curve = SubResource("Curve_c5xtw")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v8c8o"]
 height = 2.3
