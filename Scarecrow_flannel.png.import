@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyhvh1vya42vn"
-path.s3tc="res://.godot/imported/Scarecrow_wood.png-f65b70e553a2ce1895126a34a5a53175.s3tc.ctex"
+uid="uid://btey2tvffblk7"
+path.s3tc="res://.godot/imported/Scarecrow_flannel.png-be9feec65ad0968c9b0645a3c5b97cae.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "7df5b67dd3467884cd07bed6028534c3"
+"md5": "5e1b1cfc0e27a354879836f1807bea2f"
 }
 
 [deps]
 
-source_file="res://Scarecrow_wood.png"
-dest_files=["res://.godot/imported/Scarecrow_wood.png-f65b70e553a2ce1895126a34a5a53175.s3tc.ctex"]
+source_file="res://Scarecrow_flannel.png"
+dest_files=["res://.godot/imported/Scarecrow_flannel.png-be9feec65ad0968c9b0645a3c5b97cae.s3tc.ctex"]
 
 [params]
 
