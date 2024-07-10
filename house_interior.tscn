@@ -219,7 +219,6 @@ visible = false
 stream = ExtResource("8_4cf1f")
 volume_db = -41.225
 autoplay = true
-stream_paused = true
 
 [node name="Gamemusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_4cf1f")

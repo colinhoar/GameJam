@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dk7i5i12pukcn"]
+[gd_scene load_steps=30 format=3 uid="uid://dk7i5i12pukcn"]
 
 [ext_resource type="Script" path="res://barn_interior_scene.gd" id="1_gw80w"]
 [ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_hekc8"]
@@ -8,11 +8,17 @@
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="6_j2s4t"]
 [ext_resource type="Script" path="res://BarntoExterior.gd" id="7_r8g30"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_wn5tw"]
+[ext_resource type="PackedScene" uid="uid://b6qlb8dtq6f2w" path="res://cow_2.tscn" id="9_kgg5p"]
+[ext_resource type="PackedScene" uid="uid://63m7k81sscle" path="res://sheep_2.tscn" id="10_k60ai"]
+[ext_resource type="Script" path="res://cow_2.gd" id="10_yhsll"]
+[ext_resource type="Script" path="res://sheep_2.gd" id="12_s21j7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2duhc"]
 size = Vector3(1, 1, 0.988159)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_q4cuj"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_knyk4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qari"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vuk7q"]
 size = Vector2(20, 20)
@@ -66,6 +72,64 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_a7d8f"]
 size = Vector3(2, 3, 3)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hu4ks"]
+size = Vector3(1.11926, 1, 1)
+
+[sub_resource type="Animation" id="Animation_m8r7g"]
+resource_name = "Key_001Action"
+length = 2.70833
+tracks/0/type = "blend_shape"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cow:Head Move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0416667, 1, 0, 0.0833333, 1, 0.00506366, 0.125, 1, 0.0196759, 0.166667, 1, 0.0429688, 0.208333, 1, 0.0740741, 0.25, 1, 0.112124, 0.291667, 1, 0.15625, 0.333333, 1, 0.205584, 0.375, 1, 0.259259, 0.416667, 1, 0.316406, 0.458333, 1, 0.376157, 0.5, 1, 0.437645, 0.583333, 1, 0.562355, 0.625, 1, 0.623843, 0.666667, 1, 0.683594, 0.708333, 1, 0.740741, 0.75, 1, 0.794415, 0.791667, 1, 0.84375, 0.833333, 1, 0.887876, 0.875, 1, 0.925926, 0.916667, 1, 0.957031, 0.958333, 1, 0.980324, 1, 1, 0.994936, 1.04167, 1, 1, 1.66667, 1, 1, 1.70833, 1, 0.995328, 1.75, 1, 0.981824, 1.79167, 1, 0.960256, 1.83333, 1, 0.931392, 1.875, 1, 0.896, 1.91667, 1, 0.854848, 1.95833, 1, 0.808704, 2, 1, 0.758336, 2.04167, 1, 0.704512, 2.08333, 1, 0.648, 2.125, 1, 0.589568, 2.25, 1, 0.410432, 2.29167, 1, 0.352, 2.33333, 1, 0.295488, 2.375, 1, 0.241664, 2.41667, 1, 0.191296, 2.45833, 1, 0.145152, 2.5, 1, 0.104, 2.54167, 1, 0.068608, 2.58333, 1, 0.039744, 2.625, 1, 0.018176, 2.66667, 1, 0.00467181, 2.70833, 1, 0)
+tracks/1/type = "blend_shape"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cow:Tail Move")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.0416667, 1, 0, 0.0833333, 1, 0.0553936, 0.125, 1, 0.198251, 0.166667, 1, 0.393586, 0.208333, 1, 0.606414, 0.25, 1, 0.801749, 0.291667, 1, 0.944606, 0.333333, 1, 1, 0.375, 1, 0.925926, 0.416667, 1, 0.740741, 0.5, 1, 0.259259, 0.541667, 1, 0.074074, 0.583333, 1, 0, 0.875, 1, 0, 0.916667, 1, 0.0168411, 0.958333, 1, 0.0637233, 1, 1, 0.135184, 1.04167, 1, 0.225762, 1.08333, 1, 0.329995, 1.125, 1, 0.442421, 1.16667, 1, 0.557579, 1.20833, 1, 0.670005, 1.25, 1, 0.774238, 1.29167, 1, 0.864816, 1.33333, 1, 0.936277, 1.375, 1, 0.983159, 1.41667, 1, 1, 1.45833, 1, 0.925926, 1.5, 1, 0.740741, 1.58333, 1, 0.259259, 1.625, 1, 0.074074, 1.66667, 1, 0, 1.95833, 1, 0, 2, 1, 0.0196759, 2.04167, 1, 0.0740741, 2.08333, 1, 0.15625, 2.125, 1, 0.259259, 2.16667, 1, 0.376157, 2.25, 1, 0.623843, 2.29167, 1, 0.740741, 2.33333, 1, 0.84375, 2.375, 1, 0.925926, 2.41667, 1, 0.980324, 2.45833, 1, 1, 2.5, 1, 0.925926, 2.54167, 1, 0.740741, 2.625, 1, 0.259259, 2.66667, 1, 0.074074, 2.70833, 1, 0)
+tracks/2/type = "blend_shape"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cow:Tail Move 2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.0416667, 1, 0, 0.333333, 1, 0, 0.375, 1, 0.0168411, 0.416667, 1, 0.0637233, 0.458333, 1, 0.135184, 0.5, 1, 0.225762, 0.541667, 1, 0.329995, 0.583333, 1, 0.442421, 0.625, 1, 0.557579, 0.666667, 1, 0.670005, 0.708333, 1, 0.774238, 0.75, 1, 0.864816, 0.791667, 1, 0.936277, 0.833333, 1, 0.983159, 0.875, 1, 1, 0.916667, 1, 0.925926, 0.958333, 1, 0.740741, 1.04167, 1, 0.259259, 1.08333, 1, 0.074074, 1.125, 1, 0, 1.41667, 1, 0, 1.45833, 1, 0.0168412, 1.5, 1, 0.0637233, 1.54167, 1, 0.135184, 1.58333, 1, 0.225762, 1.625, 1, 0.329995, 1.66667, 1, 0.442421, 1.70833, 1, 0.557578, 1.75, 1, 0.670005, 1.79167, 1, 0.774238, 1.83333, 1, 0.864816, 1.875, 1, 0.936277, 1.91667, 1, 0.983159, 1.95833, 1, 1, 2, 1, 0.925926, 2.04167, 1, 0.740741, 2.125, 1, 0.259259, 2.16667, 1, 0.074074, 2.20833, 1, 0, 2.70833, 1, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne6x1"]
+_data = {
+"Key_001Action": SubResource("Animation_m8r7g")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tam0b"]
+
+[sub_resource type="Animation" id="Animation_gxj4s"]
+resource_name = "KeyAction"
+length = 2.70833
+tracks/0/type = "blend_shape"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sheep:Key 1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0416667, 1, 0, 0.0833333, 1, 0.00506366, 0.125, 1, 0.0196759, 0.166667, 1, 0.0429688, 0.208333, 1, 0.0740741, 0.25, 1, 0.112124, 0.291667, 1, 0.15625, 0.333333, 1, 0.205584, 0.375, 1, 0.259259, 0.416667, 1, 0.316406, 0.458333, 1, 0.376157, 0.5, 1, 0.437645, 0.583333, 1, 0.562355, 0.625, 1, 0.623843, 0.666667, 1, 0.683594, 0.708333, 1, 0.740741, 0.75, 1, 0.794415, 0.791667, 1, 0.84375, 0.833333, 1, 0.887876, 0.875, 1, 0.925926, 0.916667, 1, 0.957031, 0.958333, 1, 0.980324, 1, 1, 0.994936, 1.04167, 1, 1, 1.66667, 1, 1, 1.70833, 1, 0.995328, 1.75, 1, 0.981824, 1.79167, 1, 0.960256, 1.83333, 1, 0.931392, 1.875, 1, 0.896, 1.91667, 1, 0.854848, 1.95833, 1, 0.808704, 2, 1, 0.758336, 2.04167, 1, 0.704512, 2.08333, 1, 0.648, 2.125, 1, 0.589568, 2.25, 1, 0.410432, 2.29167, 1, 0.352, 2.33333, 1, 0.295488, 2.375, 1, 0.241664, 2.41667, 1, 0.191296, 2.45833, 1, 0.145152, 2.5, 1, 0.104, 2.54167, 1, 0.068608, 2.58333, 1, 0.039744, 2.625, 1, 0.018176, 2.66667, 1, 0.00467181, 2.70833, 1, 0)
+tracks/1/type = "blend_shape"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sheep:Key 2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.0416667, 1, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p00lk"]
+_data = {
+"KeyAction": SubResource("Animation_gxj4s")
+}
+
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.4519)
 script = ExtResource("1_gw80w")
@@ -108,12 +172,12 @@ transform = Transform3D(-2.36041e-08, 0, 0.54, 0, 8.99, 0, -0.54, 0, -2.36041e-0
 shape = SubResource("BoxShape3D_2duhc")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
-transform = Transform3D(-0.755, 0.796743, -5.37922e-08, 0, -4.02145e-08, -1.421, -1.3077, -0.46, 3.10569e-08, -2.42009, 1.03135, 32.064)
-shape = SubResource("CylinderShape3D_q4cuj")
+transform = Transform3D(1.3077, 0.46, -3.10569e-08, 0, -4.02145e-08, -1.421, -0.755001, 0.796743, -5.37922e-08, -2.42009, 1.03135, 32.064)
+shape = SubResource("BoxShape3D_knyk4")
 
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
-transform = Transform3D(-6.60042e-08, 0.901209, -0.285732, 0, -0.184992, -1.39198, -1.51, -3.93931e-08, 1.24897e-08, 3.12271, 1.02141, 27.3028)
-shape = SubResource("CylinderShape3D_q4cuj")
+transform = Transform3D(-1.47243, 8.73423e-08, -0.314991, 0.334718, 2.13855e-08, -1.38565, -1.32008e-07, -0.92, -6.2114e-08, 3.12271, 1.02141, 27.3028)
+shape = SubResource("BoxShape3D_6qari")
 
 [node name="CollisionShape3D11" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
 transform = Transform3D(0.307013, 0.285762, 0.123172, -0.0470641, 5.72314, 2.0608e-10, -0.441733, -0.411157, 0.0856071, -2.76184, 3.24301, 27.9274)
@@ -198,5 +262,44 @@ volume_db = -28.108
 pitch_scale = 0.39
 autoplay = true
 
+[node name="Cow2" parent="." instance=ExtResource("9_kgg5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.145786, -0.304877, 29.2883)
+script = ExtResource("10_yhsll")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cow2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cow2/StaticBody3D"]
+transform = Transform3D(1.57972, 0, -0.110205, 0, 1.595, 0, 0.220272, 0, 0.790354, -0.654975, 1.80917, -0.20068)
+shape = SubResource("BoxShape3D_hu4ks")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Cow2"]
+libraries = {
+"": SubResource("AnimationLibrary_ne6x1")
+}
+
+[node name="CowTimer" type="Timer" parent="Cow2"]
+wait_time = 7.0
+
+[node name="Sheep2" parent="." instance=ExtResource("10_k60ai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.380432, 0.283412, 31.3092)
+script = ExtResource("12_s21j7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sheep2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sheep2/StaticBody3D"]
+transform = Transform3D(1.60142, 0, 0.299819, 0, 1.71, 0, -0.599637, 0, 0.800708, 0.454773, 1.03471, 0.717627)
+shape = SubResource("BoxShape3D_tam0b")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Sheep2"]
+libraries = {
+"": SubResource("AnimationLibrary_p00lk")
+}
+
+[node name="SheepTimer" type="Timer" parent="Sheep2"]
+wait_time = 9.0
+
 [connection signal="body_entered" from="BarntoExterior" to="BarntoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="BarntoExterior" to="BarntoExterior" method="_on_body_exited"]
+[connection signal="timeout" from="Cow2/CowTimer" to="." method="_on_cow_timer_timeout"]
+[connection signal="timeout" from="Cow2/CowTimer" to="Cow2" method="_on_cow_timer_timeout"]
+[connection signal="timeout" from="Sheep2/SheepTimer" to="Sheep2" method="_on_sheep_timer_timeout"]

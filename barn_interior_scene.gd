@@ -5,6 +5,7 @@ var paused = false
 
 func _ready() -> void:
 	Global.testNum = 2
+	
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
