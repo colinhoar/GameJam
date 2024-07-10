@@ -10,3 +10,6 @@ func _physics_process(delta):
 		
 		if collider is Interactable:
 			prompt.text = collider.prompt_message
+			
+			if Input.is_action_just_pressed("pet"):
+				collider.interact(owner)
