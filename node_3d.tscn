@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://blrq3k1y3cjw4"]
+[gd_scene load_steps=67 format=3 uid="uid://blrq3k1y3cjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dku7tnsgf2j84" path="res://SkyComp.png" id="1_2kaws"]
 [ext_resource type="Script" path="res://main.gd" id="1_e1sbo"]
@@ -10,6 +10,7 @@
 [ext_resource type="MeshLibrary" uid="uid://t0j5oyopa4iq" path="res://Foliage1.tres" id="5_eqxdq"]
 [ext_resource type="MeshLibrary" uid="uid://iennsmqxhdh7" path="res://Scarecrow1.tres" id="6_bgb33"]
 [ext_resource type="AudioStream" uid="uid://fyyos5nom3k6" path="res://flashlight.mp3" id="7_puanw"]
+[ext_resource type="PackedScene" uid="uid://cjhuyn6uac86v" path="res://InteractRay.tscn" id="8_vqljj"]
 [ext_resource type="MeshLibrary" uid="uid://bi0307ev7evx6" path="res://TilledFarmland.tres" id="9_2sy40"]
 [ext_resource type="PackedScene" uid="uid://juk51ssarrmo" path="res://House.glb" id="9_fd86p"]
 [ext_resource type="MeshLibrary" uid="uid://4sg6q4dgjudf" path="res://BigRock.tres" id="10_tq61f"]
@@ -31,9 +32,11 @@
 [ext_resource type="AudioStream" uid="uid://dem1y8swr8n77" path="res://Sounds/Generator.mp3" id="27_ow6ba"]
 [ext_resource type="AudioStream" uid="uid://dlam03bhgdfa3" path="res://Sounds/GameMusic.mp3" id="29_b7xo5"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="29_ebpp0"]
+[ext_resource type="Script" path="res://interactable.gd" id="31_3yaro"]
 [ext_resource type="Script" path="res://Mirage.gd" id="33_cqqk4"]
 [ext_resource type="PackedScene" uid="uid://i03epkaxu3wy" path="res://Shed.glb" id="33_r7egm"]
 [ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="34_7r72m"]
+[ext_resource type="Texture2D" uid="uid://blvqtbravl8sk" path="res://crosshair.png" id="37_ojgv0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bwfdg"]
 panorama = ExtResource("1_2kaws")
@@ -46,11 +49,9 @@ background_mode = 2
 sky = SubResource("Sky_7ksxp")
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
 fog_light_color = Color(0.0759762, 0.0498935, 0.0369018, 1)
 fog_sun_scatter = 1.3
 fog_density = 0.0732
-volumetric_fog_enabled = true
 volumetric_fog_emission = Color(0.0591858, 0.0243298, 0.0240298, 1)
 
 [sub_resource type="FogMaterial" id="FogMaterial_kmt1d"]
@@ -273,6 +274,8 @@ wait_time = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_umafi")
 }
+
+[node name="InteractRay" parent="Player/Neck" instance=ExtResource("8_vqljj")]
 
 [node name="GRIDMAPS" type="Node" parent="."]
 
@@ -526,6 +529,8 @@ shape = SubResource("BoxShape3D_5f577")
 transform = Transform3D(0.528438, 0, 0.848972, 0, 1, 0, -0.848972, 0, 0.528438, 29.7398, -2.86102e-06, -43.2865)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/StarterSign"]
+script = ExtResource("31_3yaro")
+prompt_message = "To Barn & Shed"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/StarterSign/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -535,6 +540,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(0.919135, 0, -0.393942, 0, 1, 0, 0.393942, 0, 0.919135, -10.6709, -2.86102e-06, -27.0933)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/StarterSign2"]
+script = ExtResource("31_3yaro")
+prompt_message = "To Shed"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/StarterSign2/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -544,6 +551,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(0.346936, 0, 0.937889, 0, 1, 0, -0.937889, 0, 0.346936, -42.3611, -2.86102e-06, -27.7087)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/StarterSign3"]
+script = ExtResource("31_3yaro")
+prompt_message = "To Shed"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/StarterSign3/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -553,6 +562,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(-0.994881, 0, 0.101056, 0, 1, 0, -0.101056, 0, -0.994881, -41.1712, -2.86102e-06, -28.5358)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/House&BarnSign"]
+script = ExtResource("31_3yaro")
+prompt_message = "To House & Barn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/House&BarnSign/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -562,6 +573,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86563, 0, -21.5254)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/ShedSign"]
+script = ExtResource("31_3yaro")
+prompt_message = "To Shed"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/ShedSign/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -571,6 +584,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(-0.25038, 0, 0.968148, 0, 1, 0, -0.968148, 0, -0.25038, 8.62394, 0, -20.4939)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/BarnSign"]
+script = ExtResource("31_3yaro")
+prompt_message = "To Barn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/BarnSign/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -580,6 +595,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(-0.439939, 0, -0.898028, 0, 1, 0, 0.898028, 0, -0.439939, 9.40794, 0, -22.0058)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/HouseSign"]
+script = ExtResource("31_3yaro")
+prompt_message = "To House"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/HouseSign/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -589,6 +606,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(0.821149, 0, -0.570714, 0, 1, 0, 0.570714, 0, 0.821149, 2.41634, 0.0175228, 5.33606)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/ShedSign2"]
+script = ExtResource("31_3yaro")
+prompt_message = "To Shed"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/ShedSign2/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -598,6 +617,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(-0.25038, 0, 0.968148, 0, 1, 0, -0.968148, 0, -0.25038, 3.17464, 0.0175228, 6.36757)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/BarnSign2"]
+script = ExtResource("31_3yaro")
+prompt_message = "To Barn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/BarnSign2/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -607,6 +628,8 @@ shape = SubResource("BoxShape3D_xpam2")
 transform = Transform3D(-0.439939, 0, -0.898028, 0, 1, 0, 0.898028, 0, -0.439939, 3.95864, 0.0175228, 4.85561)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/HouseSign2"]
+script = ExtResource("31_3yaro")
+prompt_message = "To House"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/HouseSign2/StaticBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
@@ -654,9 +677,23 @@ transform = Transform3D(0.634285, 0, 0.773099, 0, 1, 0, -0.773099, 0, 0.634285, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.62, 0, 0.508549, 0)
 shape = SubResource("BoxShape3D_ulp2l")
 
+[node name="Crosshair" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("37_ojgv0")
+expand_mode = 1
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4311, 0)
-visible = false
 omni_range = 4096.0
 omni_attenuation = 0.0563283
 

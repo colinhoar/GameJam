@@ -1,18 +1,21 @@
-[gd_scene load_steps=31 format=3 uid="uid://dk7i5i12pukcn"]
+[gd_scene load_steps=34 format=3 uid="uid://dk7i5i12pukcn"]
 
 [ext_resource type="Script" path="res://barn_interior_scene.gd" id="1_gw80w"]
 [ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_hekc8"]
 [ext_resource type="Script" path="res://PlayerInterior.gd" id="2_pd7cv"]
-[ext_resource type="Script" path="res://Flashlight.gd" id="3_dojtf"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="4_05wo6"]
+[ext_resource type="Script" path="res://FlashlightBarn.gd" id="4_ftsm0"]
 [ext_resource type="AudioStream" uid="uid://fyyos5nom3k6" path="res://flashlight.mp3" id="5_cywg1"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="6_j2s4t"]
+[ext_resource type="PackedScene" uid="uid://cjhuyn6uac86v" path="res://InteractRay.tscn" id="6_s5o2a"]
 [ext_resource type="Script" path="res://BarntoExterior.gd" id="7_r8g30"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_wn5tw"]
 [ext_resource type="PackedScene" uid="uid://b6qlb8dtq6f2w" path="res://cow_2.tscn" id="9_kgg5p"]
 [ext_resource type="PackedScene" uid="uid://63m7k81sscle" path="res://sheep_2.tscn" id="10_k60ai"]
 [ext_resource type="Script" path="res://cow_2.gd" id="10_yhsll"]
 [ext_resource type="Script" path="res://sheep_2.gd" id="12_s21j7"]
+[ext_resource type="Script" path="res://interactable.gd" id="13_8et2a"]
+[ext_resource type="Texture2D" uid="uid://blvqtbravl8sk" path="res://crosshair.png" id="14_hhuih"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2duhc"]
 size = Vector3(1, 1, 0.988159)
@@ -216,7 +219,7 @@ light_color = Color(0.936275, 0.694578, 0.222146, 1)
 spot_range = 6.574
 spot_attenuation = 0.965936
 spot_angle = 35.91
-script = ExtResource("3_dojtf")
+script = ExtResource("4_ftsm0")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Neck/Camera3D/SpotLight3D"]
 stream = ExtResource("5_cywg1")
@@ -227,6 +230,8 @@ stream = ExtResource("5_cywg1")
 libraries = {
 "": SubResource("AnimationLibrary_cl1vj")
 }
+
+[node name="InteractRay" parent="Player/Neck" instance=ExtResource("6_s5o2a")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_05wo6")]
 visible = false
@@ -273,6 +278,8 @@ transform = Transform3D(0.979575, 0, -0.201078, 0, 1, 0, 0.201078, 0, 0.979575, 
 script = ExtResource("10_yhsll")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cow2"]
+script = ExtResource("13_8et2a")
+prompt_message = "Pet [Q]"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cow2/StaticBody3D"]
 transform = Transform3D(1.57972, 0, -0.110205, 0, 1.595, 0, 0.220272, 0, 0.790354, -0.654975, 1.80917, -0.20068)
@@ -291,6 +298,8 @@ transform = Transform3D(0.68962, 0, 0.724172, 0, 1, 0, -0.724172, 0, 0.68962, 0.
 script = ExtResource("12_s21j7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sheep2"]
+script = ExtResource("13_8et2a")
+prompt_message = "Pet [Q]"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sheep2/StaticBody3D"]
 transform = Transform3D(1.60142, 0, 0.299819, 0, 1.71, 0, -0.599637, 0, 0.800708, 0.454773, 1.03471, 0.717627)
@@ -304,6 +313,22 @@ libraries = {
 [node name="SheepTimer" type="Timer" parent="Sheep2"]
 wait_time = 9.0
 
+[node name="Crosshair" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_hhuih")
+expand_mode = 1
+
+[connection signal="timeout" from="Player/Neck/Camera3D/SpotLight3D/FlashlightTimer" to="Player/Neck/Camera3D/SpotLight3D" method="_on_flashlight_timer_timeout"]
 [connection signal="body_entered" from="BarntoExterior" to="BarntoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="BarntoExterior" to="BarntoExterior" method="_on_body_exited"]
 [connection signal="timeout" from="Cow2/CowTimer" to="." method="_on_cow_timer_timeout"]

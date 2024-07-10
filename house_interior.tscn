@@ -1,15 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=23 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
 [ext_resource type="Script" path="res://PlayerInterior.gd" id="2_rvvo5"]
-[ext_resource type="Script" path="res://Flashlight.gd" id="3_jxxxv"]
+[ext_resource type="Script" path="res://FlashlightHouse.gd" id="4_0bipg"]
 [ext_resource type="Script" path="res://HousetoExterior.gd" id="4_ldtqx"]
 [ext_resource type="AudioStream" uid="uid://fyyos5nom3k6" path="res://flashlight.mp3" id="5_2f2cf"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="5_7t2vp"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="6_hlw7o"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_4cf1f"]
 [ext_resource type="PackedScene" uid="uid://bom3a74j6im0i" path="res://Light.glb" id="10_esr0s"]
+[ext_resource type="Texture2D" uid="uid://blvqtbravl8sk" path="res://crosshair.png" id="11_1jkl0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_molkm"]
 
@@ -182,7 +183,7 @@ light_color = Color(0.936275, 0.694578, 0.222146, 1)
 spot_range = 6.574
 spot_attenuation = 0.965936
 spot_angle = 35.91
-script = ExtResource("3_jxxxv")
+script = ExtResource("4_0bipg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Neck/Camera3D/SpotLight3D"]
 stream = ExtResource("5_2f2cf")
@@ -273,5 +274,21 @@ light_energy = 0.2
 light_specular = 0.0
 omni_range = 8.0
 
+[node name="Crosshair" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_1jkl0")
+expand_mode = 1
+
+[connection signal="timeout" from="Player/Neck/Camera3D/SpotLight3D/FlashlightTimer" to="Player/Neck/Camera3D/SpotLight3D" method="_on_flashlight_timer_timeout"]
 [connection signal="body_entered" from="HousetoExterior" to="HousetoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="HousetoExterior" to="HousetoExterior" method="_on_body_exited"]

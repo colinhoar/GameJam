@@ -13,6 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		$Player/Rain.visible = !$Player/Rain.visible
+		$Crosshair.visible = !$Crosshair.visible
 		pauseMenu()
 
 func pauseMenu():
@@ -20,6 +21,7 @@ func pauseMenu():
 		pause_menu.hide()
 		Engine.time_scale = 1
 		$Player/Rain.visible = !$Player/Rain.visible
+		$Crosshair.visible = !$Crosshair.visible
 	else:
 		pause_menu.show()
 		Engine.time_scale = 0
