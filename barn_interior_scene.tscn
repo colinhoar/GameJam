@@ -253,6 +253,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.247316, 1.44839, 0)
 shape = SubResource("BoxShape3D_a7d8f")
 
 [node name="Rain" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("8_wn5tw")
 volume_db = -41.225
 autoplay = true

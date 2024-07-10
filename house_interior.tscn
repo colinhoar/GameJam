@@ -214,6 +214,7 @@ vertical_alignment = 1
 visible = false
 
 [node name="Rain" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("8_4cf1f")
 volume_db = -41.225
 autoplay = true
