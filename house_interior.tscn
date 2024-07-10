@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
-[ext_resource type="Script" path="res://Player.gd" id="3_2laf1"]
 [ext_resource type="Script" path="res://Flashlight.gd" id="3_jxxxv"]
 [ext_resource type="Script" path="res://HousetoExterior.gd" id="4_ldtqx"]
 [ext_resource type="AudioStream" uid="uid://fyyos5nom3k6" path="res://flashlight.mp3" id="5_2f2cf"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="5_7t2vp"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="6_hlw7o"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_4cf1f"]
+[ext_resource type="Script" path="res://Player_Barn.gd" id="9_g2as0"]
 [ext_resource type="PackedScene" uid="uid://bom3a74j6im0i" path="res://Light.glb" id="10_esr0s"]
 [ext_resource type="Texture2D" uid="uid://blvqtbravl8sk" path="res://crosshair.png" id="11_1jkl0"]
 [ext_resource type="PackedScene" uid="uid://cjhuyn6uac86v" path="res://InteractRay.tscn" id="12_pvsph"]
@@ -280,8 +280,8 @@ texture = ExtResource("11_1jkl0")
 expand_mode = 1
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27039, -0.168849, -13.8057)
-script = ExtResource("3_2laf1")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.27039, -0.168849, -13.8057)
+script = ExtResource("9_g2as0")
 
 [node name="Rain" type="GPUParticles3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8437, 0)

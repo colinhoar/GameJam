@@ -4,6 +4,11 @@ extends Node3D
 var paused = false
 
 func _ready() -> void:
+	if Global.flashNum == 1:
+		$Player/Neck/Camera3D/SpotLight3D.show()
+	else:
+		$Player/Neck/Camera3D/SpotLight3D.hide()
+	
 	if Global.testNum == 1:
 		$Player.translate(Vector3(31.514, 0, -41.397))
 	if Global.testNum == 2:

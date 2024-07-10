@@ -13,4 +13,8 @@ func _on_body_exited(body: CharacterBody3D) -> void:
 func _process(delta):
 	if entered == true:
 		if Input.is_action_just_pressed("door"):
+			if $"../Player/Neck/Camera3D/SpotLight3D".is_visible_in_tree():
+				Global.flashNum = 1
+			else:
+				Global.flashNum = 0
 			get_tree().change_scene_to_file("res://node_3d.tscn")
