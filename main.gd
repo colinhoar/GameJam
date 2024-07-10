@@ -5,9 +5,9 @@ var paused = false
 
 func _ready() -> void:
 	if Global.testNum == 1:
-		$Player.translate(Vector3(32.632, 0, -42.28))
+		$Player.translate(Vector3(31.514, 0, -41.397))
 	if Global.testNum == 2:
-		$Player.translate(Vector3(12.449, 0, 33.43))
+		$Player.translate(Vector3(12.785, 0, 32.293))
 	Global.testNum = 3
 
 func _process(delta: float) -> void:

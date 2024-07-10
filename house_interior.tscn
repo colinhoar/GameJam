@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=21 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
 [ext_resource type="Script" path="res://PlayerInterior.gd" id="2_rvvo5"]
 [ext_resource type="Script" path="res://Flashlight.gd" id="3_jxxxv"]
 [ext_resource type="Script" path="res://HousetoExterior.gd" id="4_ldtqx"]
+[ext_resource type="AudioStream" uid="uid://fyyos5nom3k6" path="res://flashlight.mp3" id="5_2f2cf"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="5_7t2vp"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="6_hlw7o"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_4cf1f"]
@@ -181,6 +182,11 @@ spot_range = 6.574
 spot_attenuation = 0.965936
 spot_angle = 35.91
 script = ExtResource("3_jxxxv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Neck/Camera3D/SpotLight3D"]
+stream = ExtResource("5_2f2cf")
+
+[node name="FlashlightTimer" type="Timer" parent="Player/Neck/Camera3D/SpotLight3D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Neck/Camera3D"]
 libraries = {

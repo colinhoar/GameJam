@@ -5,7 +5,7 @@ var paused = false
 
 func _ready() -> void:
 	if Global.testNum == 3:
-		$Player.translate(Vector3(-1.5, 0, 7))
+		$Player.translate(Vector3(-1.5, 0, 6))
 	Global.testNum = 1
 
 func _process(delta: float) -> void:

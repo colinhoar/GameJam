@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://dk7i5i12pukcn"]
+[gd_scene load_steps=31 format=3 uid="uid://dk7i5i12pukcn"]
 
 [ext_resource type="Script" path="res://barn_interior_scene.gd" id="1_gw80w"]
 [ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_hekc8"]
 [ext_resource type="Script" path="res://PlayerInterior.gd" id="2_pd7cv"]
 [ext_resource type="Script" path="res://Flashlight.gd" id="3_dojtf"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="4_05wo6"]
+[ext_resource type="AudioStream" uid="uid://fyyos5nom3k6" path="res://flashlight.mp3" id="5_cywg1"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="6_j2s4t"]
 [ext_resource type="Script" path="res://BarntoExterior.gd" id="7_r8g30"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_wn5tw"]
@@ -193,7 +194,7 @@ mesh = SubResource("PlaneMesh_vuk7q")
 shape = SubResource("ConcavePolygonShape3D_ld7in")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.0479781, 0, 0.998848, 0, 1, 0, -0.998848, 0, 0.0479781, 3.71035, 1.24283, 30.4622)
+transform = Transform3D(0.0479781, 0, 0.998848, 0, 1, 0, -0.998848, 0, 0.0479781, 3.36855, 1.24283, 30.4622)
 script = ExtResource("2_pd7cv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
@@ -216,6 +217,11 @@ spot_range = 6.574
 spot_attenuation = 0.965936
 spot_angle = 35.91
 script = ExtResource("3_dojtf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Neck/Camera3D/SpotLight3D"]
+stream = ExtResource("5_cywg1")
+
+[node name="FlashlightTimer" type="Timer" parent="Player/Neck/Camera3D/SpotLight3D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Neck/Camera3D"]
 libraries = {
