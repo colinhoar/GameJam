@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi8h2ha1erwn0"]
+
+[ext_resource type="PackedScene" uid="uid://cuj0r5ncg81qk" path="res://HouseWindows.glb" id="1_tnbqh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0k5p"]
+albedo_color = Color(1, 0.662745, 0, 1)
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color(1, 0.662745, 0, 1)
+emission_energy_multiplier = 1.36
+
+[node name="HouseWindows" instance=ExtResource("1_tnbqh")]
+
+[node name="Windows" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n0k5p")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk7i5i12pukcn"]
+[gd_scene load_steps=19 format=3 uid="uid://dk7i5i12pukcn"]
 
 [ext_resource type="Script" path="res://barn_interior_scene.gd" id="1_gw80w"]
 [ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_hekc8"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="4_05wo6"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="6_j2s4t"]
 [ext_resource type="Script" path="res://BarntoExterior.gd" id="7_r8g30"]
+[ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_wn5tw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2duhc"]
+size = Vector3(1, 1, 0.988159)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q4cuj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vuk7q"]
 size = Vector2(20, 20)
@@ -66,6 +72,52 @@ script = ExtResource("1_gw80w")
 
 [node name="BarnInterior" parent="." instance=ExtResource("1_hekc8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227329, 0, 0.154961)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BarnInterior"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(10.295, 0, 0, 0, 16.13, 0, 0, 0, 0.34, 0, 0, 25.685)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(10.17, 0, 0, 0, 16.13, 0, 0, 0, 0.34, 0, 0, 34.9947)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-4.44545e-07, 0, 0.34, 0, 16.13, 0, -10.17, 0, -1.48619e-08, -5.22789, 0, 30.1231)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-4.44545e-07, 0, 0.34, 0, 16.13, 0, -10.17, 0, -1.48619e-08, 5.20154, 0, 30.1231)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-2.36041e-08, 0, 0.54, 0, 8.99, 0, -0.54, 0, -2.36041e-08, -0.00266774, 3.24301, 33.208)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-2.36041e-08, 0, 0.54, 0, 8.99, 0, -0.54, 0, -2.36041e-08, -0.00266774, 3.24301, 27.4878)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-2.36041e-08, 0, 0.54, 0, 8.99, 0, -0.54, 0, -2.36041e-08, -4.32243, 3.24301, 27.4878)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-2.36041e-08, 0, 0.54, 0, 8.99, 0, -0.54, 0, -2.36041e-08, -4.32243, 3.24301, 33.1885)
+shape = SubResource("BoxShape3D_2duhc")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-0.755, 0.796743, -5.37922e-08, 0, -4.02145e-08, -1.421, -1.3077, -0.46, 3.10569e-08, -2.42009, 1.03135, 32.064)
+shape = SubResource("CylinderShape3D_q4cuj")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(-6.60042e-08, 0.901209, -0.285732, 0, -0.184992, -1.39198, -1.51, -3.93931e-08, 1.24897e-08, 3.12271, 1.02141, 27.3028)
+shape = SubResource("CylinderShape3D_q4cuj")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="BarnInterior/StaticBody3D"]
+transform = Transform3D(0.307013, 0.285762, 0.123172, -0.0470641, 5.72314, 2.0608e-10, -0.441733, -0.411157, 0.0856071, -2.76184, 3.24301, 27.9274)
+shape = SubResource("BoxShape3D_2duhc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.4502)
@@ -134,6 +186,17 @@ script = ExtResource("7_r8g30")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BarntoExterior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.247316, 1.44839, 0)
 shape = SubResource("BoxShape3D_a7d8f")
+
+[node name="Rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wn5tw")
+volume_db = -41.225
+autoplay = true
+
+[node name="Gamemusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wn5tw")
+volume_db = -28.108
+pitch_scale = 0.39
+autoplay = true
 
 [connection signal="body_entered" from="BarntoExterior" to="BarntoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="BarntoExterior" to="BarntoExterior" method="_on_body_exited"]

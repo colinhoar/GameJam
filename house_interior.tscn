@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=20 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://HousetoExterior.gd" id="4_ldtqx"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="5_7t2vp"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="6_hlw7o"]
+[ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_4cf1f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_molkm"]
 
@@ -213,6 +214,18 @@ vertical_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_hlw7o")]
 visible = false
+
+[node name="Rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4cf1f")
+volume_db = -41.225
+autoplay = true
+stream_paused = true
+
+[node name="Gamemusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4cf1f")
+volume_db = -28.108
+pitch_scale = 0.39
+autoplay = true
 
 [connection signal="body_entered" from="HousetoExterior" to="HousetoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="HousetoExterior" to="HousetoExterior" method="_on_body_exited"]

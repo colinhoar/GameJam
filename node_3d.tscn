@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://blrq3k1y3cjw4"]
+[gd_scene load_steps=53 format=3 uid="uid://blrq3k1y3cjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dku7tnsgf2j84" path="res://SkyComp.png" id="1_2kaws"]
 [ext_resource type="Script" path="res://main.gd" id="1_e1sbo"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dlilsqpf6e1hj" path="res://barn_exterior.tscn" id="14_2rpfr"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="15_ls8cn"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="16_8esn2"]
+[ext_resource type="PackedScene" uid="uid://bi8h2ha1erwn0" path="res://house_windows.tscn" id="17_b8pd6"]
 [ext_resource type="MeshLibrary" uid="uid://bcj13pljduobm" path="res://Fence.tres" id="18_cfo23"]
 [ext_resource type="MeshLibrary" uid="uid://dsdqlg5s6i25d" path="res://SemiBrokenFence.tres" id="19_iakvj"]
 [ext_resource type="MeshLibrary" uid="uid://cbjgif35bffap" path="res://BrokenFence.tres" id="20_3heic"]
@@ -24,6 +25,11 @@
 [ext_resource type="PackedScene" uid="uid://dvhm4j5yfw1bb" path="res://broken_fence_2.tscn" id="22_h1dl1"]
 [ext_resource type="PackedScene" uid="uid://cix2bgr5kkqpq" path="res://semi_broken_fence_2.tscn" id="23_lyowu"]
 [ext_resource type="Script" path="res://BarntoInterior.gd" id="24_wgkqb"]
+[ext_resource type="PackedScene" uid="uid://coihfuc2u5etg" path="res://Generator.glb" id="25_1o0lv"]
+[ext_resource type="PackedScene" uid="uid://b0im1chit48s5" path="res://SignPost.glb" id="26_orim1"]
+[ext_resource type="AudioStream" uid="uid://dem1y8swr8n77" path="res://Sounds/Generator.mp3" id="27_ow6ba"]
+[ext_resource type="AudioStream" uid="uid://dlam03bhgdfa3" path="res://Sounds/GameMusic.mp3" id="29_b7xo5"]
+[ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="29_ebpp0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bwfdg"]
 panorama = ExtResource("1_2kaws")
@@ -35,9 +41,18 @@ sky_material = SubResource("PanoramaSkyMaterial_bwfdg")
 background_mode = 2
 sky = SubResource("Sky_7ksxp")
 tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
 fog_light_color = Color(0.0759762, 0.0498935, 0.0369018, 1)
 fog_sun_scatter = 1.3
+fog_density = 0.0732
+volumetric_fog_enabled = true
 volumetric_fog_emission = Color(0.0591858, 0.0243298, 0.0240298, 1)
+
+[sub_resource type="FogMaterial" id="FogMaterial_kmt1d"]
+density = 0.18
+emission = Color(0.0588235, 0.0235294, 0.0235294, 1)
+edge_fade = 0.951365
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgbpm"]
 albedo_texture = ExtResource("1_kd40a")
@@ -130,11 +145,19 @@ size = Vector3(2, 3, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6am1y"]
 size = Vector3(3, 3, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5f577"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xpam2"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e1sbo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_neq4i")
+
+[node name="FogVolume" type="FogVolume" parent="WorldEnvironment"]
+transform = Transform3D(22.6618, 0, 31.5318, 0, 14.495, 0, -61.2629, 0, 11.664, -55.9663, 3.25965, -44.9289)
+material = SubResource("FogMaterial_kmt1d")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 43, -30)
@@ -179,9 +202,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 transform = Transform3D(0.981746, 0.00788174, 0.190032, 0.0057562, 0.997452, -0.0711082, -0.190108, 0.070904, 0.9792, 0.908435, -0.379444, 0.464317)
 visible = false
 light_color = Color(0.936275, 0.694578, 0.222146, 1)
-spot_range = 7.15
-spot_attenuation = 1.07177
+spot_range = 6.044
+spot_attenuation = 1.36604
 spot_angle = 35.91
+spot_angle_attenuation = 1.56917
 script = ExtResource("5_2qa2k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Neck/Camera3D"]
@@ -275,6 +299,9 @@ transform = Transform3D(-0.688342, 0, -0.725386, 0, 1, 0, 0.725386, 0, -0.688342
 transform = Transform3D(9.8, 0, 0, 0, 9.2, 0, 0, 0, 9, 0, 0, 0)
 shape = SubResource("BoxShape3D_pf3bj")
 
+[node name="HouseWindows" parent="House" instance=ExtResource("17_b8pd6")]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
+
 [node name="BarnExterior" parent="." instance=ExtResource("14_2rpfr")]
 transform = Transform3D(-0.698315, 0, 0.71579, 0, 1, 0, -0.71579, 0, -0.698315, 18.1248, 1.90735e-06, 37.9131)
 
@@ -312,11 +339,6 @@ vertical_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("16_8esn2")]
 visible = false
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4311, 0)
-omni_range = 4096.0
-omni_attenuation = 0.0563283
 
 [node name="Path Fences" type="Node" parent="."]
 
@@ -404,6 +426,145 @@ theme_override_font_sizes/font_size = 16
 text = "Enter Barn [E]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HouseGenerator" parent="." instance=ExtResource("25_1o0lv")]
+transform = Transform3D(-1.32189, 0, -1.50087, 0, 2, 0, 1.50087, 0, -1.32189, 40.7269, -1.19209e-06, -43.4405)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="HouseGenerator"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HouseGenerator/StaticBody3D"]
+transform = Transform3D(1.04, 0, 0, 0, 1.13, 0, 0, 0, 0.87, 0, 0.154317, 0)
+shape = SubResource("BoxShape3D_5f577")
+
+[node name="Generator" type="AudioStreamPlayer3D" parent="HouseGenerator"]
+transform = Transform3D(-0.330472, 0, 0.375217, 0, 0.5, 0, -0.375217, 0, -0.330472, -0.124006, 5.96045e-07, -0.295901)
+stream = ExtResource("27_ow6ba")
+volume_db = 2.117
+max_db = 5.0
+autoplay = true
+max_distance = 20.0
+
+[node name="BarnGenerator" parent="." instance=ExtResource("25_1o0lv")]
+transform = Transform3D(1.39183, 0, -1.43625, 0, 2, 0, 1.43625, 0, 1.39183, 21.0811, -0.0126543, 33.8112)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BarnGenerator"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarnGenerator/StaticBody3D"]
+transform = Transform3D(1.04, 0, 0, 0, 1.13, 0, 0, 0, 0.87, 0, 0.154317, 0)
+shape = SubResource("BoxShape3D_5f577")
+
+[node name="SignPosts" type="Node" parent="."]
+
+[node name="StarterSign" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(0.528438, 0, 0.848972, 0, 1, 0, -0.848972, 0, 0.528438, 29.7398, -2.86102e-06, -43.2865)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/StarterSign"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/StarterSign/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="StarterSign2" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(0.919135, 0, -0.393942, 0, 1, 0, 0.393942, 0, 0.919135, -10.6709, -2.86102e-06, -27.0933)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/StarterSign2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/StarterSign2/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="StarterSign3" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(0.346936, 0, 0.937889, 0, 1, 0, -0.937889, 0, 0.346936, -42.3611, -2.86102e-06, -27.7087)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/StarterSign3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/StarterSign3/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="House&BarnSign" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(-0.994881, 0, 0.101056, 0, 1, 0, -0.101056, 0, -0.994881, -41.1712, -2.86102e-06, -28.5358)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/House&BarnSign"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/House&BarnSign/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="ShedSign" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86563, 0, -21.5254)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/ShedSign"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/ShedSign/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="BarnSign" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(-0.25038, 0, 0.968148, 0, 1, 0, -0.968148, 0, -0.25038, 8.62394, 0, -20.4939)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/BarnSign"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/BarnSign/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="HouseSign" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(-0.439939, 0, -0.898028, 0, 1, 0, 0.898028, 0, -0.439939, 9.40794, 0, -22.0058)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/HouseSign"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/HouseSign/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="ShedSign2" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(0.821149, 0, -0.570714, 0, 1, 0, 0.570714, 0, 0.821149, 2.41634, 0.0175228, 5.33606)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/ShedSign2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/ShedSign2/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="BarnSign2" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(-0.25038, 0, 0.968148, 0, 1, 0, -0.968148, 0, -0.25038, 3.17464, 0.0175228, 6.36757)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/BarnSign2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/BarnSign2/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="HouseSign2" parent="SignPosts" instance=ExtResource("26_orim1")]
+transform = Transform3D(-0.439939, 0, -0.898028, 0, 1, 0, 0.898028, 0, -0.439939, 3.95864, 0.0175228, 4.85561)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SignPosts/HouseSign2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignPosts/HouseSign2/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 3.27, 0, 0, 0, 0.1, 0, 1.58332, 0)
+shape = SubResource("BoxShape3D_xpam2")
+
+[node name="Gamemusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_b7xo5")
+volume_db = -33.73
+autoplay = true
+
+[node name="Rain" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.8938, 0)
+stream = ExtResource("29_ebpp0")
+unit_size = 100.0
+max_db = -10.641
+pitch_scale = 2.07
+autoplay = true
+max_distance = 4096.0
+panning_strength = 0.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4311, 0)
+visible = false
+omni_range = 4096.0
+omni_attenuation = 0.0563283
 
 [connection signal="body_entered" from="HousetoInterior" to="HousetoInterior" method="_on_body_entered"]
 [connection signal="body_exited" from="HousetoInterior" to="HousetoInterior" method="_on_body_exited"]
