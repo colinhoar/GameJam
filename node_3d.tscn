@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://blrq3k1y3cjw4"]
+[gd_scene load_steps=64 format=3 uid="uid://blrq3k1y3cjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dku7tnsgf2j84" path="res://SkyComp.png" id="1_2kaws"]
 [ext_resource type="Script" path="res://main.gd" id="1_e1sbo"]
@@ -32,6 +32,8 @@
 [ext_resource type="AudioStream" uid="uid://dlam03bhgdfa3" path="res://Sounds/GameMusic.mp3" id="29_b7xo5"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="29_ebpp0"]
 [ext_resource type="Script" path="res://Mirage.gd" id="33_cqqk4"]
+[ext_resource type="PackedScene" uid="uid://i03epkaxu3wy" path="res://Shed.glb" id="33_r7egm"]
+[ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="34_7r72m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bwfdg"]
 panorama = ExtResource("1_2kaws")
@@ -198,6 +200,10 @@ distance_fade_max_distance = 25.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_1o5ya"]
 radius = 36.054
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_141h0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ulp2l"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e1sbo")
 
@@ -295,7 +301,7 @@ mesh_library = ExtResource("6_bgb33")
 cell_size = Vector3(0.5, 2, 0.5)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(-65466, 587, 1048576, -65073, 136, 655360)
+"cells": PackedInt32Array(-65466, 587, 1048576, -65073, 136, 655360, -64983, 65351, 655360, -65483, 65395, 0)
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
@@ -304,7 +310,7 @@ transform = Transform3D(5, 0, 0, 0, 3, 0, 0, 0, 5, 0, -2.8, 0)
 mesh_library = ExtResource("9_2sy40")
 cell_size = Vector3(0.5, 1.875, 0.5)
 data = {
-"cells": PackedInt32Array(14, 65525, 0, 14, 65529, 0, 14, 65533, 0, 18, 65533, 0, 18, 65529, 0, 18, 65525, 0, 2, 65519, 0, 2, 65523, 0, 65534, 65523, 0, 65534, 65519, 0)
+"cells": PackedInt32Array(14, 65525, 0, 14, 65529, 0, 14, 65533, 0, 18, 65533, 0, 18, 65529, 0, 18, 65525, 0, 2, 65519, 0, 2, 65523, 0, 65534, 65523, 0, 65534, 65519, 0, 65533, 65533, 1441792, 65533, 1, 0, 65529, 65533, 655360, 65526, 65521, 1441792)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -328,21 +334,21 @@ data = {
 mesh_library = ExtResource("18_cfo23")
 cell_size = Vector3(0.5, 1.24, 0.5)
 data = {
-"cells": PackedInt32Array(22, 65483, 0, 22, 65479, 1441792, 65518, 65483, 655360, 65534, 65483, 655360, 62, 65473, 1048576, 62, 65505, 1441792, 62, 65520, 1441792, 22, 65443, 1048576)
+"cells": PackedInt32Array(22, 65483, 0, 22, 65479, 1441792, 65518, 65483, 655360, 65534, 65483, 655360, 62, 65473, 1048576, 62, 65505, 1441792, 62, 65520, 1441792, 22, 65443, 1048576, 65533, 65513, 0, 65517, 65513, 0, 65533, 14, 1441792, 65482, 65473, 0)
 }
 
 [node name="SemiBrokenFence" type="GridMap" parent="GRIDMAPS"]
 mesh_library = ExtResource("19_iakvj")
 cell_size = Vector3(0.5, 1.24, 0.5)
 data = {
-"cells": PackedInt32Array(62, 65485, 1441792, 62, 65529, 1441792, 22, 65456, 1441792)
+"cells": PackedInt32Array(62, 65485, 1441792, 62, 65529, 1441792, 22, 65456, 1441792, 65523, 65513, 0, 65494, 65513, 0, 65533, 65534, 1441792, 65494, 65473, 0)
 }
 
 [node name="BrokenFence" type="GridMap" parent="GRIDMAPS"]
 mesh_library = ExtResource("20_3heic")
 cell_size = Vector3(0.5, 1.24, 0.5)
 data = {
-"cells": PackedInt32Array(14, 65483, 655360, 22, 65474, 1441792, 6, 65483, 0, 65526, 65483, 0, 66, 65473, 0, 62, 65481, 1048576, 62, 65493, 1441792, 62, 65509, 1441792, 62, 65525, 1048576, 22, 65466, 1048576, 22, 65451, 1441792)
+"cells": PackedInt32Array(14, 65483, 655360, 22, 65474, 1441792, 6, 65483, 0, 65526, 65483, 0, 66, 65473, 0, 62, 65481, 1048576, 62, 65493, 1441792, 62, 65509, 1441792, 62, 65525, 1048576, 22, 65466, 1048576, 22, 65451, 1441792, 65521, 65513, 0, 65502, 65513, 0, 65533, 65517, 1441792, 65533, 6, 1441792, 65490, 65473, 655360, 65478, 65469, 1048576, 65503, 65477, 655360)
 }
 
 [node name="House" parent="." instance=ExtResource("9_fd86p")]
@@ -499,6 +505,12 @@ max_db = 5.0
 autoplay = true
 max_distance = 20.0
 
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseGenerator"]
+transform = Transform3D(0.5, 0, -1.49012e-08, 0, 0.5, 0, 1.49012e-08, 0, 0.5, -0.102766, 0.387014, 0.206416)
+light_color = Color(0.611765, 0, 0, 1)
+light_energy = 2.939
+omni_range = 1.984
+
 [node name="BarnGenerator" parent="." instance=ExtResource("25_1o0lv")]
 transform = Transform3D(1.39183, 0, -1.43625, 0, 2, 0, 1.43625, 0, 1.39183, 21.0811, -0.0126543, 33.8112)
 
@@ -605,15 +617,10 @@ stream = ExtResource("29_b7xo5")
 volume_db = -33.73
 autoplay = true
 
-[node name="Rain" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.8938, 0)
+[node name="Rain" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_ebpp0")
-unit_size = 100.0
-max_db = -10.641
-pitch_scale = 2.07
+volume_db = -26.234
 autoplay = true
-max_distance = 4096.0
-panning_strength = 0.0
 
 [node name="ShadowyGuy" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.203649, 0, 0, 0, 0.298736, 0, 0, 0, 0.298736, -23.5873, 2.34678, -9.03637)
@@ -628,6 +635,24 @@ script = ExtResource("33_cqqk4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ShadowyGuy/Mirage"]
 shape = SubResource("SphereShape3D_1o5ya")
+
+[node name="Shed" parent="." instance=ExtResource("33_r7egm")]
+transform = Transform3D(-0.381377, 0, 0.92442, 0, 1, 0, -0.92442, 0, -0.381377, -45.9457, 0, -4.02845)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Shed"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shed/StaticBody3D"]
+transform = Transform3D(4.3, 0, 0, 0, 4.7, 0, 0, 0, 4.3, 0, 1.73456, 0)
+shape = SubResource("BoxShape3D_141h0")
+
+[node name="Gas" parent="." instance=ExtResource("34_7r72m")]
+transform = Transform3D(0.634285, 0, 0.773099, 0, 1, 0, -0.773099, 0, 0.634285, -49.2261, 0, -5.6693)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Gas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gas/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.62, 0, 0.508549, 0)
+shape = SubResource("BoxShape3D_ulp2l")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4311, 0)

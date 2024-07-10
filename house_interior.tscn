@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=22 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="5_7t2vp"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="6_hlw7o"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_4cf1f"]
+[ext_resource type="PackedScene" uid="uid://bom3a74j6im0i" path="res://Light.glb" id="10_esr0s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_molkm"]
 
@@ -231,6 +232,46 @@ stream = ExtResource("8_4cf1f")
 volume_db = -28.108
 pitch_scale = 0.39
 autoplay = true
+
+[node name="Light" parent="." instance=ExtResource("10_esr0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25664, 3.52655, -13.7881)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.234477, 0)
+light_color = Color(1, 0.686275, 0, 1)
+light_energy = 0.15
+light_specular = 0.0
+omni_range = 8.0
+
+[node name="Light2" parent="." instance=ExtResource("10_esr0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25664, 3.52655, -9.11958)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.234477, 0)
+light_color = Color(1, 0.686275, 0, 1)
+light_energy = 0.15
+light_specular = 0.0
+omni_range = 8.0
+
+[node name="Light3" parent="." instance=ExtResource("10_esr0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83429, 3.52655, -13.8712)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.234477, 0)
+light_color = Color(1, 0.686275, 0, 1)
+light_energy = 0.15
+light_specular = 0.0
+omni_range = 8.0
+
+[node name="Light4" parent="." instance=ExtResource("10_esr0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83429, 3.52655, -9.16513)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.234477, 0)
+light_color = Color(1, 0.686275, 0, 1)
+light_energy = 0.2
+light_specular = 0.0
+omni_range = 8.0
 
 [connection signal="body_entered" from="HousetoExterior" to="HousetoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="HousetoExterior" to="HousetoExterior" method="_on_body_exited"]
