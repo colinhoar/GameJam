@@ -24,4 +24,5 @@ func _process(delta):
 				$"../../Player/Neck/Camera3D/Gas".hide()
 				$"../../Gas2".show()
 				$"../Prompt".hide()
+				Global.barnGenNum = 1
 				first = 1

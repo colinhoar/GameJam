@@ -11,8 +11,18 @@ func _ready() -> void:
 	
 	if Global.gasNum == 1:
 		$Player/Neck/Camera3D/Gas.show()
+		$Gas.hide()
+		$Gas.translate(Vector3(0, 1000, 0))
 	else:
 		$Player/Neck/Camera3D/Gas.hide()
+		$Gas.show()
+	
+	if Global.barnGenNum == 1:
+		$BarnGenerator/OmniLight3D.show()
+		$BarnGenerator/Generator.play()
+		$Gas2.show()
+		$Gas.hide()
+		$Gas.translate(Vector3(0, 1000, 0))
 	
 	if Global.testNum == 1:
 		$Player.translate(Vector3(31.514, 0, -41.397))
