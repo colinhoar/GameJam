@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dk7i5i12pukcn"]
+[gd_scene load_steps=38 format=3 uid="uid://dk7i5i12pukcn"]
 
 [ext_resource type="Script" path="res://barn_interior_scene.gd" id="1_gw80w"]
 [ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_hekc8"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Player_Barn.gd" id="16_ittmy"]
 [ext_resource type="Script" path="res://SheepPet.gd" id="17_2t10s"]
 [ext_resource type="AudioStream" uid="uid://csfci5jfl6cjf" path="res://SheepBaa.mp3" id="18_oqtli"]
+[ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="19_fgueg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2duhc"]
 size = Vector3(1, 1, 0.988159)
@@ -338,6 +339,10 @@ wait_time = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_umafi")
 }
+
+[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("19_fgueg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.812117, -1.30152, -1.03212)
+visible = false
 
 [node name="InteractRay" parent="Player/Neck" instance=ExtResource("6_s5o2a")]
 target_position = Vector3(0, 0, -2)

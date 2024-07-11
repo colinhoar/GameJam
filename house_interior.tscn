@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=25 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
@@ -12,21 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bom3a74j6im0i" path="res://Light.glb" id="10_esr0s"]
 [ext_resource type="Texture2D" uid="uid://blvqtbravl8sk" path="res://crosshair.png" id="11_1jkl0"]
 [ext_resource type="PackedScene" uid="uid://cjhuyn6uac86v" path="res://InteractRay.tscn" id="12_pvsph"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_molkm"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_4y140"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yxuvd"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ad38p"]
-size = Vector2(20, 20)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_55g3d"]
-data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qm2nh"]
-size = Vector3(3, 2, 2)
+[ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="13_142xn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5ocnb"]
 height = 2.3
@@ -71,9 +57,67 @@ _data = {
 "RESET": SubResource("Animation_npv8d")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_molkm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4y140"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yxuvd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ad38p"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_55g3d"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qm2nh"]
+size = Vector3(3, 2, 2)
+
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0274796, -0.0613532, 11.6577)
 script = ExtResource("1_8ty32")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.27039, -0.168849, -13.8057)
+script = ExtResource("9_g2as0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_5ocnb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("ConvexPolygonShape3D_ej603")
+
+[node name="Neck" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Neck"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
+transform = Transform3D(0.981746, 0.00788174, 0.190032, 0.0057562, 0.997452, -0.0711082, -0.190108, 0.070904, 0.9792, 0.908435, -0.379444, 0.464317)
+visible = false
+light_color = Color(0.936275, 0.694578, 0.222146, 1)
+spot_range = 6.044
+spot_attenuation = 1.36604
+spot_angle = 35.91
+spot_angle_attenuation = 1.56917
+script = ExtResource("3_jxxxv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Neck/Camera3D/SpotLight3D"]
+stream = ExtResource("5_2f2cf")
+
+[node name="FlashlightTimer" type="Timer" parent="Player/Neck/Camera3D/SpotLight3D"]
+wait_time = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Neck/Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_umafi")
+}
+
+[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("13_142xn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.812117, -1.30152, -1.03212)
+visible = false
+
+[node name="InteractRay" parent="Player/Neck" instance=ExtResource("12_pvsph")]
+target_position = Vector3(0, 0, -2)
 
 [node name="House_Interior" parent="." instance=ExtResource("1_cb74g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104291, -1.06616, 0.877074)
@@ -256,45 +300,6 @@ grow_vertical = 2
 texture = ExtResource("11_1jkl0")
 expand_mode = 1
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.27039, -0.168849, -13.8057)
-script = ExtResource("9_g2as0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("CapsuleMesh_5ocnb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("ConvexPolygonShape3D_ej603")
-
-[node name="Neck" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/Neck"]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
-transform = Transform3D(0.981746, 0.00788174, 0.190032, 0.0057562, 0.997452, -0.0711082, -0.190108, 0.070904, 0.9792, 0.908435, -0.379444, 0.464317)
-visible = false
-light_color = Color(0.936275, 0.694578, 0.222146, 1)
-spot_range = 6.044
-spot_attenuation = 1.36604
-spot_angle = 35.91
-spot_angle_attenuation = 1.56917
-script = ExtResource("3_jxxxv")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Neck/Camera3D/SpotLight3D"]
-stream = ExtResource("5_2f2cf")
-
-[node name="FlashlightTimer" type="Timer" parent="Player/Neck/Camera3D/SpotLight3D"]
-wait_time = 0.7
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Neck/Camera3D"]
-libraries = {
-"": SubResource("AnimationLibrary_umafi")
-}
-
-[node name="InteractRay" parent="Player/Neck" instance=ExtResource("12_pvsph")]
-target_position = Vector3(0, 0, -2)
-
+[connection signal="timeout" from="Player/Neck/Camera3D/SpotLight3D/FlashlightTimer" to="Player/Neck/Camera3D/SpotLight3D" method="_on_flashlight_timer_timeout"]
 [connection signal="body_entered" from="HousetoExterior" to="HousetoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="HousetoExterior" to="HousetoExterior" method="_on_body_exited"]
-[connection signal="timeout" from="Player/Neck/Camera3D/SpotLight3D/FlashlightTimer" to="Player/Neck/Camera3D/SpotLight3D" method="_on_flashlight_timer_timeout"]
