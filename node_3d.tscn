@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://blrq3k1y3cjw4"]
+[gd_scene load_steps=72 format=3 uid="uid://blrq3k1y3cjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dku7tnsgf2j84" path="res://SkyComp.png" id="1_2kaws"]
 [ext_resource type="Script" path="res://main.gd" id="1_e1sbo"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cjhuyn6uac86v" path="res://InteractRay.tscn" id="8_vqljj"]
 [ext_resource type="MeshLibrary" uid="uid://bi0307ev7evx6" path="res://TilledFarmland.tres" id="9_2sy40"]
 [ext_resource type="PackedScene" uid="uid://juk51ssarrmo" path="res://House.glb" id="9_fd86p"]
+[ext_resource type="PackedScene" uid="uid://bq17lkjfdwuvs" path="res://new_gas.tscn" id="9_kv8dj"]
+[ext_resource type="Script" path="res://GasCamera.gd" id="10_1jf03"]
 [ext_resource type="MeshLibrary" uid="uid://4sg6q4dgjudf" path="res://BigRock.tres" id="10_tq61f"]
 [ext_resource type="MeshLibrary" uid="uid://dqqbvpbym1ek6" path="res://Scarecrow.tres" id="11_6p4pa"]
 [ext_resource type="MeshLibrary" uid="uid://cvb01jcpu8nlq" path="res://SmallRock.tres" id="11_fv621"]
@@ -33,8 +35,8 @@
 [ext_resource type="AudioStream" uid="uid://dlam03bhgdfa3" path="res://Sounds/GameMusic.mp3" id="29_b7xo5"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="29_ebpp0"]
 [ext_resource type="Script" path="res://interactable.gd" id="31_3yaro"]
-[ext_resource type="Script" path="res://BarnGenerator.gd" id="31_r2ru8"]
 [ext_resource type="Script" path="res://Mirage.gd" id="33_cqqk4"]
+[ext_resource type="Script" path="res://UpdatedBarnGenerator.gd" id="33_mt38i"]
 [ext_resource type="PackedScene" uid="uid://i03epkaxu3wy" path="res://Shed.glb" id="33_r7egm"]
 [ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="34_7r72m"]
 [ext_resource type="Script" path="res://GasPickup.gd" id="37_ll042"]
@@ -51,11 +53,9 @@ background_mode = 2
 sky = SubResource("Sky_7ksxp")
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
 fog_light_color = Color(0.0759762, 0.0498935, 0.0369018, 1)
 fog_sun_scatter = 1.3
 fog_density = 0.0732
-volumetric_fog_enabled = true
 volumetric_fog_emission = Color(0.0591858, 0.0243298, 0.0240298, 1)
 
 [sub_resource type="FogMaterial" id="FogMaterial_kmt1d"]
@@ -155,6 +155,9 @@ size = Vector3(2, 3, 1)
 size = Vector3(3, 3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5f577"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6yyn"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xpam2"]
 
@@ -257,6 +260,7 @@ shape = SubResource("ConvexPolygonShape3D_566re")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Neck"]
+cull_mask = 1048573
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
 transform = Transform3D(0.981746, 0.00788174, 0.190032, 0.0057562, 0.997452, -0.0711082, -0.190108, 0.070904, 0.9792, 0.908435, -0.379444, 0.464317)
@@ -281,12 +285,30 @@ libraries = {
 "": SubResource("AnimationLibrary_umafi")
 }
 
-[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("34_7r72m")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06943, -1.32984, -1.12094)
+[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("9_kv8dj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.069, -1.33, -1.121)
 visible = false
 
 [node name="InteractRay" parent="Player/Neck" instance=ExtResource("8_vqljj")]
 target_position = Vector3(0, -2, -2)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Player"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Player/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(360, 180)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Player/SubViewportContainer/SubViewport"]
+cull_mask = 2
+script = ExtResource("10_1jf03")
+camera_path = NodePath("../../../Neck/Camera3D")
 
 [node name="GRIDMAPS" type="Node" parent="."]
 
@@ -536,9 +558,6 @@ omni_range = 1.984
 transform = Transform3D(1.39183, 0, -1.43625, 0, 2, 0, 1.43625, 0, 1.39183, 21.0811, -0.0126543, 33.8112)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BarnGenerator"]
-script = ExtResource("31_r2ru8")
-prompt_message = "Interact [E]"
-prompt_input = "door"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BarnGenerator/StaticBody3D"]
 transform = Transform3D(1.04, 0, 0, 0, 1.13, 0, 0, 0, 0.87, 0, 0.154317, 0)
@@ -558,6 +577,26 @@ visible = false
 light_color = Color(0.611765, 0, 0, 1)
 light_energy = 2.939
 omni_range = 1.984
+
+[node name="Area3D" type="Area3D" parent="BarnGenerator"]
+script = ExtResource("33_mt38i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarnGenerator/Area3D"]
+shape = SubResource("BoxShape3D_s6yyn")
+
+[node name="Prompt" type="Label" parent="BarnGenerator"]
+visible = false
+offset_left = 137.5
+offset_top = 95.0
+offset_right = 222.5
+offset_bottom = 118.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("15_ls8cn")
+theme_override_font_sizes/font_size = 10
+text = "Interact [E]"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SignPosts" type="Node" parent="."]
 
@@ -744,7 +783,6 @@ shape = SubResource("BoxShape3D_ulp2l")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4311, 0)
-visible = false
 omni_range = 4096.0
 omni_attenuation = 0.0563283
 
@@ -753,7 +791,8 @@ omni_attenuation = 0.0563283
 [connection signal="body_exited" from="HousetoInterior" to="HousetoInterior" method="_on_body_exited"]
 [connection signal="body_entered" from="BarntoInterior" to="BarntoInterior" method="_on_body_entered"]
 [connection signal="body_exited" from="BarntoInterior" to="BarntoInterior" method="_on_body_exited"]
-[connection signal="interacted" from="BarnGenerator/StaticBody3D" to="BarnGenerator/StaticBody3D" method="_on_interacted"]
+[connection signal="body_entered" from="BarnGenerator/Area3D" to="BarnGenerator/Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="BarnGenerator/Area3D" to="BarnGenerator/Area3D" method="_on_body_exited"]
 [connection signal="body_entered" from="ShadowyGuy/Mirage" to="ShadowyGuy/Mirage" method="_on_body_entered"]
 [connection signal="body_exited" from="ShadowyGuy/Mirage" to="ShadowyGuy/Mirage" method="_on_body_exited"]
 [connection signal="interacted" from="Gas/StaticBody3D" to="Gas/StaticBody3D" method="_on_interacted"]

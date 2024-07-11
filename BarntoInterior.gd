@@ -17,4 +17,10 @@ func _process(delta):
 				Global.flashNum = 1
 			else:
 				Global.flashNum = 0
+			
+			if $"../Player/Neck/Camera3D/Gas".is_visible_in_tree():
+				Global.gasNum = 1
+			else:
+				Global.gasNum = 0
+			
 			get_tree().change_scene_to_file("res://barn_interior_scene.tscn")

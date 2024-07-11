@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dk7i5i12pukcn"]
+[gd_scene load_steps=39 format=3 uid="uid://dk7i5i12pukcn"]
 
 [ext_resource type="Script" path="res://barn_interior_scene.gd" id="1_gw80w"]
 [ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_hekc8"]
@@ -19,7 +19,8 @@
 [ext_resource type="Script" path="res://Player_Barn.gd" id="16_ittmy"]
 [ext_resource type="Script" path="res://SheepPet.gd" id="17_2t10s"]
 [ext_resource type="AudioStream" uid="uid://csfci5jfl6cjf" path="res://SheepBaa.mp3" id="18_oqtli"]
-[ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="19_fgueg"]
+[ext_resource type="PackedScene" uid="uid://bq17lkjfdwuvs" path="res://new_gas.tscn" id="19_qnbam"]
+[ext_resource type="Script" path="res://GasCamera.gd" id="21_f2eju"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2duhc"]
 size = Vector3(1, 1, 0.988159)
@@ -200,23 +201,20 @@ mesh = SubResource("PlaneMesh_vuk7q")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ld7in")
 
-[node name="PauseMenu" parent="." instance=ExtResource("4_05wo6")]
-visible = false
-
 [node name="Prompt" type="Label" parent="."]
 visible = false
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 30.0
-offset_bottom = 123.0
+offset_top = -30.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("6_j2s4t")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 10
 text = "Leave Barn [E]"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -318,6 +316,7 @@ shape = SubResource("ConvexPolygonShape3D_fgard")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Neck"]
+cull_mask = 1048573
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
 transform = Transform3D(0.981746, 0.00788174, 0.190032, 0.0057562, 0.997452, -0.0711082, -0.190108, 0.070904, 0.9792, 0.908435, -0.379444, 0.464317)
@@ -340,12 +339,33 @@ libraries = {
 "": SubResource("AnimationLibrary_umafi")
 }
 
-[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("19_fgueg")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.812117, -1.30152, -1.03212)
+[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("19_qnbam")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.069, -1.33, -1.121)
 visible = false
 
 [node name="InteractRay" parent="Player/Neck" instance=ExtResource("6_s5o2a")]
 target_position = Vector3(0, 0, -2)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Player"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Player/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(360, 180)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Player/SubViewportContainer/SubViewport"]
+cull_mask = 2
+script = ExtResource("21_f2eju")
+camera_path = NodePath("../../../Neck/Camera3D")
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_05wo6")]
+visible = false
 
 [connection signal="body_entered" from="BarntoExterior" to="BarntoExterior" method="_on_body_entered"]
 [connection signal="body_exited" from="BarntoExterior" to="BarntoExterior" method="_on_body_exited"]

@@ -1,6 +1,11 @@
 extends Camera3D
-@onready var player = $"../../../.."
 
+@export var camera_path : NodePath
+
+var camera : Camera3D
+
+func _ready() -> void:
+	camera = get_node(camera_path)
 
 func _process(delta: float) -> void:
-	position = Vector3(player.position.x + -.5, player.position.y + .3, player.position.z + .75)
+	global_transform = camera.global_transform

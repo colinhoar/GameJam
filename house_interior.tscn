@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=26 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
@@ -6,13 +6,14 @@
 [ext_resource type="Script" path="res://HousetoExterior.gd" id="4_ldtqx"]
 [ext_resource type="AudioStream" uid="uid://fyyos5nom3k6" path="res://flashlight.mp3" id="5_2f2cf"]
 [ext_resource type="FontFile" uid="uid://cewlryq5xpwj1" path="res://lunchds.ttf" id="5_7t2vp"]
+[ext_resource type="PackedScene" uid="uid://bq17lkjfdwuvs" path="res://new_gas.tscn" id="5_yxcch"]
 [ext_resource type="PackedScene" uid="uid://d2w0sm11l2vtd" path="res://pause_menu.tscn" id="6_hlw7o"]
+[ext_resource type="Script" path="res://GasCamera.gd" id="7_xt7wt"]
 [ext_resource type="AudioStream" uid="uid://cs26wpsrd15r4" path="res://Sounds/StormRainOutside.mp3" id="8_4cf1f"]
 [ext_resource type="Script" path="res://Player_Barn.gd" id="9_g2as0"]
 [ext_resource type="PackedScene" uid="uid://bom3a74j6im0i" path="res://Light.glb" id="10_esr0s"]
 [ext_resource type="Texture2D" uid="uid://blvqtbravl8sk" path="res://crosshair.png" id="11_1jkl0"]
 [ext_resource type="PackedScene" uid="uid://cjhuyn6uac86v" path="res://InteractRay.tscn" id="12_pvsph"]
-[ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="13_142xn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5ocnb"]
 height = 2.3
@@ -90,6 +91,7 @@ shape = SubResource("ConvexPolygonShape3D_ej603")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Neck"]
+cull_mask = 1048573
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck/Camera3D"]
 transform = Transform3D(0.981746, 0.00788174, 0.190032, 0.0057562, 0.997452, -0.0711082, -0.190108, 0.070904, 0.9792, 0.908435, -0.379444, 0.464317)
@@ -112,12 +114,30 @@ libraries = {
 "": SubResource("AnimationLibrary_umafi")
 }
 
-[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("13_142xn")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.812117, -1.30152, -1.03212)
+[node name="Gas" parent="Player/Neck/Camera3D" instance=ExtResource("5_yxcch")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.069, -1.33, -1.121)
 visible = false
 
 [node name="InteractRay" parent="Player/Neck" instance=ExtResource("12_pvsph")]
 target_position = Vector3(0, 0, -2)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Player"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Player/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(360, 180)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Player/SubViewportContainer/SubViewport"]
+cull_mask = 2
+script = ExtResource("7_xt7wt")
+camera_path = NodePath("../../../Neck/Camera3D")
 
 [node name="House_Interior" parent="." instance=ExtResource("1_cb74g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104291, -1.06616, 0.877074)
@@ -218,14 +238,14 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 30.0
-offset_bottom = 123.0
+offset_top = -30.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("5_7t2vp")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 10
 text = "Leave House [E]"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -9,6 +9,11 @@ func _ready() -> void:
 	else:
 		$Player/Neck/Camera3D/SpotLight3D.hide()
 	
+	if Global.gasNum == 1:
+		$Player/Neck/Camera3D/Gas.show()
+	else:
+		$Player/Neck/Camera3D/Gas.hide()
+	
 	if Global.testNum == 3:
 		$Player.translate(Vector3(-1.5, 0, 5.5))
 	Global.testNum = 1

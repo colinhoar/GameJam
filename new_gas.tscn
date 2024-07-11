@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq17lkjfdwuvs"]
+
+[ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="1_parvt"]
+
+[node name="Gas" instance=ExtResource("1_parvt")]
+
+[node name="Gas Can" parent="." index="0"]
+layers = 2
