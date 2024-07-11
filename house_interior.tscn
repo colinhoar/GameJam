@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cs6i55vbh173y"]
+[gd_scene load_steps=24 format=3 uid="uid://cs6i55vbh173y"]
 
 [ext_resource type="Script" path="res://house_main.gd" id="1_8ty32"]
 [ext_resource type="PackedScene" uid="uid://dym4fbl7pwanb" path="res://House_Interior.glb" id="1_cb74g"]
@@ -27,30 +27,6 @@ data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0,
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qm2nh"]
 size = Vector3(3, 2, 2)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ebmue"]
-emission_shape = 3
-emission_box_extents = Vector3(10, 0.5, 10)
-direction = Vector3(0, -1, 0)
-spread = 5.0
-initial_velocity_min = 30.0
-initial_velocity_max = 30.0
-color = Color(0.266667, 0.329412, 0.278431, 0.0862745)
-
-[sub_resource type="Curve" id="Curve_4l8rj"]
-max_value = 0.05
-_data = [Vector2(0.188235, 0.000549451), 0.0, 0.0, 0, 0, Vector2(0.388235, 0.00714286), 0.0, 0.0, 0, 0, Vector2(0.529412, 0.00274725), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwmpa"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_1gb31"]
-material = SubResource("StandardMaterial3D_uwmpa")
-curve = SubResource("Curve_4l8rj")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5ocnb"]
 height = 2.3
@@ -283,13 +259,6 @@ expand_mode = 1
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.27039, -0.168849, -13.8057)
 script = ExtResource("9_g2as0")
-
-[node name="Rain" type="GPUParticles3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8437, 0)
-amount = 1000
-visibility_aabb = AABB(-10, -20, -10, 20, 20, 20)
-process_material = SubResource("ParticleProcessMaterial_ebmue")
-draw_pass_1 = SubResource("RibbonTrailMesh_1gb31")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_5ocnb")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dk7i5i12pukcn"]
+[gd_scene load_steps=37 format=3 uid="uid://dk7i5i12pukcn"]
 
 [ext_resource type="Script" path="res://barn_interior_scene.gd" id="1_gw80w"]
 [ext_resource type="PackedScene" uid="uid://4h15kb8ecu14" path="res://BarnInterior.glb" id="1_hekc8"]
@@ -93,30 +93,6 @@ tracks/1/keys = PackedFloat32Array(0.0416667, 1, 0)
 _data = {
 "KeyAction": SubResource("Animation_gxj4s")
 }
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_orr35"]
-emission_shape = 3
-emission_box_extents = Vector3(10, 0.5, 10)
-direction = Vector3(0, -1, 0)
-spread = 5.0
-initial_velocity_min = 30.0
-initial_velocity_max = 30.0
-color = Color(0.266667, 0.329412, 0.278431, 0.0862745)
-
-[sub_resource type="Curve" id="Curve_7870u"]
-max_value = 0.05
-_data = [Vector2(0.188235, 0.000549451), 0.0, 0.0, 0, 0, Vector2(0.388235, 0.00714286), 0.0, 0.0, 0, 0, Vector2(0.529412, 0.00274725), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5pcn"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_rpi3c"]
-material = SubResource("StandardMaterial3D_e5pcn")
-curve = SubResource("Curve_7870u")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o6aw8"]
 height = 2.3
@@ -271,6 +247,7 @@ script = ExtResource("10_yhsll")
 [node name="StaticBody3D" type="StaticBody3D" parent="Cow2"]
 script = ExtResource("13_r104k")
 prompt_message = "Pet [Q]"
+prompt_input = "pet"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cow2/StaticBody3D"]
 transform = Transform3D(1.57972, 0, -0.110205, 0, 1.595, 0, 0.220272, 0, 0.790354, -0.654975, 1.80917, -0.20068)
@@ -294,6 +271,7 @@ script = ExtResource("12_s21j7")
 [node name="StaticBody3D" type="StaticBody3D" parent="Sheep2"]
 script = ExtResource("17_2t10s")
 prompt_message = "Pet [Q]"
+prompt_input = "pet"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sheep2/StaticBody3D"]
 transform = Transform3D(1.60142, 0, 0.299819, 0, 1.71, 0, -0.599637, 0, 0.800708, 0.454773, 1.03471, 0.717627)
@@ -328,13 +306,6 @@ expand_mode = 1
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.3285, 1.11466, 30.6314)
 script = ExtResource("16_ittmy")
-
-[node name="Rain" type="GPUParticles3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8437, 0)
-amount = 1000
-visibility_aabb = AABB(-10, -20, -10, 20, 20, 20)
-process_material = SubResource("ParticleProcessMaterial_orr35")
-draw_pass_1 = SubResource("RibbonTrailMesh_rpi3c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_o6aw8")
