@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJam"
-run/main_scene="res://node_3d.tscn"
+run/main_scene="res://house_interior.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,14 +23,24 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"Farmer": "res://Farmer.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch"
 }
-directories/dtl_directory={}
+directories/dtl_directory={
+"AfterGrabbingGas": "res://AfterGrabbingGas.dtl",
+"Shadowy guy area box": "res://Shadowy guy area box.dtl",
+"Sleep": "res://Sleep.dtl",
+"Slep": "res://Slep.dtl",
+"timeline1": "res://timeline1.dtl",
+"timeline2": "res://timeline2.dtl",
+"timeline3": "res://timeline3.dtl",
+"timeline4": "res://timeline4.dtl"
+}
 glossary/default_case_sensitive=true
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://Sounds/Dialoguestyle.tres"]
+layout/default_style="res://Sounds/Dialoguestyle.tres"
 variables={}
-text/letter_speed=0.01
+text/letter_speed=0.04
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
 text/advance_delay=0.1
@@ -46,6 +56,7 @@ choices/reveal_delay=0
 choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
+text/autopauses={}
 
 [display]
 
