@@ -3,6 +3,8 @@ Farmer (Guy): The shed has gas.
 Farmer (Guy): The shed is a long walk.
 - Go to Shed.
 	Farmer (Guy): . . .
+	[end_timeline]
 - Go to Bed.
 	Farmer (Guy): The animals should be fine.
 	Farmer (Guy): . . .
+	[end_timeline]
