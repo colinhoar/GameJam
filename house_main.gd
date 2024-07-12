@@ -4,7 +4,10 @@ extends Node3D
 var paused = false
 
 func _ready() -> void:
-	Dialogic.start("timeline1")
+	if Global.beginningDiaNum == 0:
+		Dialogic.start("timeline1")
+		Global.beginningDiaNum = 1
+	
 	if Global.flashNum == 1:
 		$Player/Neck/Camera3D/SpotLight3D.show()
 	else:

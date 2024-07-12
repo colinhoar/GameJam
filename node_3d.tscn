@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://blrq3k1y3cjw4"]
+[gd_scene load_steps=79 format=3 uid="uid://blrq3k1y3cjw4"]
 
 [ext_resource type="Texture2D" uid="uid://dku7tnsgf2j84" path="res://SkyComp.png" id="1_2kaws"]
 [ext_resource type="Script" path="res://main.gd" id="1_e1sbo"]
@@ -41,6 +41,9 @@
 [ext_resource type="PackedScene" uid="uid://b3jp1t702arcw" path="res://Gas.glb" id="34_7r72m"]
 [ext_resource type="Script" path="res://GasPickup.gd" id="37_ll042"]
 [ext_resource type="Texture2D" uid="uid://blvqtbravl8sk" path="res://crosshair.png" id="37_ojgv0"]
+[ext_resource type="PackedScene" uid="uid://dgtlmy73rpe6b" path="res://stand_sheep.tscn" id="42_in7pq"]
+[ext_resource type="AudioStream" uid="uid://qvm1tmhlkn36" path="res://SheepMusic.mp3" id="43_3ns1l"]
+[ext_resource type="Script" path="res://StandSheep.gd" id="44_k8l3n"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bwfdg"]
 panorama = ExtResource("1_2kaws")
@@ -213,6 +216,35 @@ radius = 36.054
 [sub_resource type="BoxShape3D" id="BoxShape3D_141h0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ulp2l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4st2m"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yqdj4"]
+radius = 7.977
+
+[sub_resource type="Animation" id="Animation_shmyy"]
+resource_name = "KeyAction_001"
+length = 0.416667
+tracks/0/type = "blend_shape"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sheep:Key 1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0416667, 1, 0)
+tracks/1/type = "blend_shape"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sheep:Key 2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.0416667, 1, 0, 0.0833333, 1, 0.0342936, 0.125, 1, 0.1262, 0.166667, 1, 0.259259, 0.208333, 1, 0.41701, 0.25, 1, 0.58299, 0.291667, 1, 0.740741, 0.333333, 1, 0.8738, 0.375, 1, 0.965706, 0.416667, 1, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hmys"]
+_data = {
+"KeyAction_001": SubResource("Animation_shmyy")
+}
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e1sbo")
@@ -789,6 +821,33 @@ visible = false
 omni_range = 4096.0
 omni_attenuation = 0.0563283
 
+[node name="StandSheep" parent="." instance=ExtResource("42_in7pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.7568, -12.9505)
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="StandSheep"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StandSheep/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_4st2m")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StandSheep"]
+stream = ExtResource("43_3ns1l")
+
+[node name="Area3D" type="Area3D" parent="StandSheep"]
+visible = false
+script = ExtResource("44_k8l3n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StandSheep/Area3D"]
+visible = false
+shape = SubResource("SphereShape3D_yqdj4")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="StandSheep"]
+libraries = {
+"": SubResource("AnimationLibrary_1hmys")
+}
+
 [connection signal="timeout" from="Player/Neck/Camera3D/SpotLight3D/FlashlightTimer" to="Player/Neck/Camera3D/SpotLight3D" method="_on_flashlight_timer_timeout"]
 [connection signal="body_entered" from="HousetoInterior" to="HousetoInterior" method="_on_body_entered"]
 [connection signal="body_exited" from="HousetoInterior" to="HousetoInterior" method="_on_body_exited"]
@@ -799,3 +858,5 @@ omni_attenuation = 0.0563283
 [connection signal="body_entered" from="ShadowyGuy/Mirage" to="ShadowyGuy/Mirage" method="_on_body_entered"]
 [connection signal="body_exited" from="ShadowyGuy/Mirage" to="ShadowyGuy/Mirage" method="_on_body_exited"]
 [connection signal="interacted" from="Gas/StaticBody3D" to="Gas/StaticBody3D" method="_on_interacted"]
+[connection signal="body_entered" from="StandSheep/Area3D" to="StandSheep/Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="StandSheep/Area3D" to="StandSheep/Area3D" method="_on_body_exited"]

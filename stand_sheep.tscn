@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgtlmy73rpe6b"]
+
+[ext_resource type="PackedScene" uid="uid://c84ab72lad7hs" path="res://StandSheep.glb" id="1_n2vod"]
+
+[node name="StandSheep" instance=ExtResource("1_n2vod")]

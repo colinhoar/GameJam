@@ -26,3 +26,5 @@ func _process(delta):
 				$"../Prompt".hide()
 				Global.barnGenNum = 1
 				first = 1
+			else:
+				Dialogic.start("timeline3")
